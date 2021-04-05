@@ -24,4 +24,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: docker build
         run: |
+          echo "hallloooo"
           docker build ./codingblog-react-frontend -t codingblog-react-frontend-image
