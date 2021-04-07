@@ -9,14 +9,12 @@ jobs:
     docker:
       - image: circleci/node:latest
     jobs:
-      - azure/build-and-push-image:
-           dockerfile: Dockerfile # defaults to `Dockerfile`
-           path: . # Defaults to working directory
-           login-server-name: codingsimon # e.g. {yourregistryname}.azure.io
-           registry-name: codingsimon
-           filters:
-             branches:
-               only: master
+      - checkout
+      - setup_remote_docker
+      - run: docker build -t codingblog-frontend:latest .
+      - run: docker tag codingblog-frontend codingsimon/codingblog-frontend
+      - run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
+      - run: docker push codingsimon/codingblog-frontend
                
 # Orchestrate our job run sequence
 workflows:
