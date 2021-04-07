@@ -21,6 +21,7 @@ jobs:
           command: |
             echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
             docker tag codingblog-frontend codingsimon/codingblog-frontend
+            echo | ls
             docker push codingsimon/codingblog-frontend
 
 
