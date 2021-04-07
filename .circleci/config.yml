@@ -1,19 +1,23 @@
 version: 2.1
 
+orbs:
+   azure-acr: circleci/azure-acr@x.y.z
+
 # Define the jobs we want to run for this project
 jobs:
   build:
     docker:
       - image: circleci/node:latest
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run: docker build -t codingblog-frontend:latest .
-      - run: docker tag codingblog-frontend codingsimon/codingblog-frontend
-      - run: az acr login --name codingsimon
-      - run: docker push codingsimon/codingblog-frontend
-
-
+    jobs:
+      - azure/build-and-push-image:
+           dockerfile: Dockerfile # defaults to `Dockerfile`
+           path: . # Defaults to working directory
+           login-server-name: codingsimon # e.g. {yourregistryname}.azure.io
+           registry-name: codingsimon
+           filters:
+             branches:
+               only: master
+               
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
