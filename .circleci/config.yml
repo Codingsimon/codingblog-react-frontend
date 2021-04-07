@@ -7,10 +7,26 @@ jobs:
       - image: ubuntu
     steps:
       - checkout
-      - run: ls
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t codingblog-frontend:latest .
+  publish-latest:
+    docker:
+      - image: ubuntu
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin $REGISTRY_HOST
+            docker push codingblog-frontend:latest      
+
+
 
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - build
+      - publish-latest
