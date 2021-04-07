@@ -20,8 +20,7 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
-            docker push codingblog-frontend:latest      
-
+            docker push codingblog-frontend
 
 
 # Orchestrate our job run sequence
