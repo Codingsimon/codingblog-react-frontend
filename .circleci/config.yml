@@ -8,10 +8,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Build Docker image
-          command: docker build -t codingblog-frontend:latest . |
-          docker tag codingblog-frontend codingsimon/codingblog-frontend
+      - run: docker build -t codingblog-frontend:latest .
+      - run: docker tag codingblog-frontend codingsimon/codingblog-frontend
   publish-latest:
     docker:
       - image: circleci/node:latest
