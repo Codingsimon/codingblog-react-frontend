@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-   azure-acr: circleci/azure-acr@x.y.z
-
 # Define the jobs we want to run for this project
 jobs:
   build:
