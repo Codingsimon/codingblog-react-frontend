@@ -9,6 +9,7 @@ jobs:
       - checkout
       - setup_remote_docker
       -run:
+          name: Demonstrate that Mongo DB is 
           command: |
           docker build -t codingsimon/codingblog-frontend:latest .
           docker tag codingblog-frontend codingsimon/codingblog-frontend
