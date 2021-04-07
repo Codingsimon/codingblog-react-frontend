@@ -16,6 +16,7 @@ jobs:
           docker login $REGISTRY_HOST -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker push codingsimon/codingblog-frontend:latest
                  
+                 
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
