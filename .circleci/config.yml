@@ -10,7 +10,7 @@ jobs:
       - setup_remote_docker
       - run: docker build -t codingblog-frontend:latest .
       - run: docker tag codingblog-frontend codingsimon/codingblog-frontend
-      - run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
+      - run: az acr login --name codingsimon
       - run: docker push codingsimon/codingblog-frontend
 
 
