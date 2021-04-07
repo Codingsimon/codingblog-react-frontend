@@ -8,10 +8,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker build -t codingsimon/codingblog-frontend:latest .
-      - run: docker tag codingblog-frontend codingsimon/codingblog-frontend
-      - run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
-      - run: docker push codingsimon/codingblog-frontend:latest
+      name: Copy Service Test Results
+      command: |
+        docker build -t codingsimon/codingblog-frontend:latest .
+        docker tag codingblog-frontend codingsimon/codingblog-frontend
+        docker login $REGISTRY_NAME -u $DOCKER_USER -p $DOCKER_PASS
+        echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
+        docker push codingsimon/codingblog-frontend:latest
       
                
 # Orchestrate our job run sequence
