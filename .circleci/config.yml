@@ -16,7 +16,7 @@ jobs:
     steps:
       - setup_remote_docker
       - run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin $REGISTRY_HOST
-      - run: docker push codingsimon/codingblog-frontend
+
 
 
 # Orchestrate our job run sequence
