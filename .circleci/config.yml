@@ -1,19 +1,16 @@
-machine:
-    services:
-      - docker
-  
-  dependencies:
-    override:
-      - docker info
-      - docker build --rm=false -t $REGISTRY_HOST/circleci .
-  
-  test:
-    override:
-      - docker run -d hello-world
-  
-  deployment:
-    hub:
-      branch: master
-      commands:
-        - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
-        - docker push $REGISTRY_HOST/circleci
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: ubuntu
+    steps:
+      - checkout
+      - run: echo "this is the build job"
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
