@@ -8,11 +8,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      command: |
-        docker build -t codingsimon/codingblog-frontend:latest .
-        docker tag codingblog-frontend codingsimon/codingblog-frontend
-        docker login $REGISTRY_HOST -u $DOCKER_USER -p $DOCKER_PASSWORD
-        docker push codingsimon/codingblog-frontend:latest
+      -run:
+          command: |
+          docker build -t codingsimon/codingblog-frontend:latest .
+          docker tag codingblog-frontend codingsimon/codingblog-frontend
+          docker login $REGISTRY_HOST -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push codingsimon/codingblog-frontend:latest
                  
 # Orchestrate our job run sequence
 workflows:
