@@ -8,7 +8,7 @@ jobs:
       - setup_remote_docker
       - run: docker build -t codingsimon/codingblog-frontend:latest .
       - run: echo | docker image ls
-      - run: docker login $REGISTRY_HOST -u $DOCKER_USER -p $DOCKER_PASSWORD && docker push codingsimon/codingblog-frontend:latest
+      - run: docker login $REGISTRY_HOST -u $DOCKER_USER -p $DOCKER_PASSWORD && docker push $REGISTRY_HOST/codingblog-frontend
 workflows:
   version: 2
   build:
