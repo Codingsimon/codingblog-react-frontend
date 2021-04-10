@@ -1,2 +1,2 @@
 # codingblog-react-frontend
-My Blog React Nodejs Frontend
+Frontend Service for my Website. Based on React and Nodejs.
