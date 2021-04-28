@@ -1,8 +1,0 @@
-version: "3"
-services: 
-    react-frontend:
-        image: codingblog-frontend
-        stdin_open: true
-        ports: 
-            #host-port : docker:port
-            - "80:3000"
